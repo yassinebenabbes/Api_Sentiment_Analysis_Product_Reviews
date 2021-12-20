@@ -23,12 +23,15 @@ If polarity accuracy is important to your business, you can consider expanding t
   width="450" height="250">
 </p>
 
-## How It Works
+## How to use 
 
-1. Size Limit contains a CLI tool, 3 plugins (`file`, `webpack`, `time`)
-   and 3 plugin presets for popular use cases (`app`, `big-lib`, `small-lib`).
-   A CLI tool finds plugins in `package.json` and loads the config.
-2. If you use the `webpack` plugin, Size Limit will bundle your JS files into
+1. Install and Import Dependencies
+<p align="center">
+<img src="https://www.codemotion.com/magazine/wp-content/uploads/2020/05/bert-google-1200x675.png"
+  alt="bERT"
+  width="450" height="250">
+</p>
+3. If you use the `webpack` plugin, Size Limit will bundle your JS files into
    a single file. It is important to track dependencies and webpack polyfills.
    It is also useful for small libraries with many small files and without
    a bundler.
