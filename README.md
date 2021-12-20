@@ -64,7 +64,8 @@ If polarity accuracy is important to your business, you can consider expanding t
                     **Url** = "Amazon Product url "
 
     ``` sh 
-     http://127.0.0.1:5000/amazon?url= "url"
+     http://127.0.0.1:5000/amazon
+          Params : url= "url"
     ```
 
 2. Example And Result :
@@ -136,21 +137,29 @@ If polarity accuracy is important to your business, you can consider expanding t
      
 ### Second Route : 
      
-<details><summary><b> /Amazon </b></summary>
+<details><summary><b> /analytics </b></summary>
 
 1. Post Method:
           - **Query Params** :
-                    **Url** = "Amazon Product url "
+                    **analytics** = ""
 
     ``` sh 
-     http://127.0.0.1:5000/amazon?url= "url"
+     http://127.0.0.1:5000/analytics
+          file= file.csv
     ```
 
 2. Example And Result :
      
-     2.1 - Example
+     2.1 - Example: In a form import your csv file and upload
      ``` sh 
-     http://127.0.0.1:5000/amazon?url= "https://www.amazon.com/Amazfit-Android-Fitness-Display-Tracking/dp/B09H5TWZQT/ref=sr_1_1_sspa?keywords=fitness+GPS&pf_rd_i=21439846011&pf_rd_m=ATVPDKIKX0DER&pf_rd_p=67c6cf47-c067-447f-a799-b2cb009a7a6e&pf_rd_r=9QQMNCA3BQF4XZCH232H&pf_rd_s=merchandised-search-8&pf_rd_t=101&qid=1640000071&sr=8-1-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUExQVNEUzY5TEZUT0ROJmVuY3J5cHRlZElkPUEwOTExMTAzM0ZIMVY4QzZDSTNNTCZlbmNyeXB0ZWRBZElkPUEwMTE2NzE5Mk81TFdEVUJDOVhITiZ3aWRnZXROYW1lPXNwX2F0ZiZhY3Rpb249Y2xpY2tSZWRpcmVjdCZkb05vdExvZ0NsaWNrPXRydWU="
+               <!doctype html>
+              <title>Upload new File</title>
+              <h1>Upload new File</h1>
+              <form method=post action="{{url_for("/analytics")}}" enctype=multipart/form-data>
+                <input type=file name=file>
+                <input type=submit value=Upload>
+              </form>
+          
     ```
      2.2 - Result
      
