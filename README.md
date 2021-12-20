@@ -27,7 +27,7 @@ If polarity accuracy is important to your business, you can consider expanding t
 
 1. Install and Import Dependencies
 <p align="center">
-<img src="https://www.codemotion.com/magazine/wp-content/uploads/2020/05/bert-google-1200x675.png"
+<img src="https://github.com/yassinebenabbes/Api_Sentiment_Analysis_Product_Reviews/blob/master/img/carbon.png"
   alt="bERT"
   width="450" height="250">
 </p>
