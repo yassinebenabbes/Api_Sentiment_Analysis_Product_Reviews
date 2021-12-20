@@ -1,7 +1,7 @@
 # Product Review Sentiment Analysis using Bert
 
 <img src="https://github.com/yassinebenabbes/Api_Sentiment_Analysis_Product_Reviews/blob/master/img/55259main.png" align="right"
-     alt="Sentiment Analysis logo" width="320" height="320">
+     alt="Sentiment Analysis logo" width="320" height="250">
 
 Size Limit is a performance budget tool for JavaScript. It checks every commit
 on CI, calculates the real cost of your JS for end-users and throws an error
