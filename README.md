@@ -4,21 +4,16 @@
      alt="Sentiment Analysis logo" width="320" height="200">
 
 One of the key areas where NLP is mainly used is sentiment analysis. Understanding customer behavior and demand for the company's products and services is critical to the organization. Generally speaking, customer feedback on the product can be divided into positive, negative and neutral. Explaining customer feedback through product reviews helps companies assess customer satisfaction with their products/services.
+If polarity accuracy is important to your business, you can consider expanding the polarity category to include:
 
-* **ES modules** and **tree-shaking** support.
-* Add Size Limit to **Travis CI**, **Circle CI**, **GitHub Actions**
-  or another CI system to know if a pull request adds a massive dependency.
-* **Modular** to fit different use cases: big JS applications
-  that use their own bundler or small npm libraries with many files.
-* Can calculate **the time** it would take a browser
-  to download and **execute** your JS. Time is a much more accurate
-  and understandable metric compared to the size in bytes.
-* Calculations include **all dependencies and polyfills**
-  used in your JS.
 
-<p align="center">
-  <img src="./img/example.png" alt="Size Limit CLI" width="738">
-</p>
+
+* **Very Negative**
+* **Negative**
+* **Neutral**
+* **Positive**
+* **Very Positive**
+
 
 With **[GitHub action]** Size Limit will post bundle size changes as a comment
 in pull request discussion.
