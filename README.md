@@ -57,7 +57,7 @@ If polarity accuracy is important to your business, you can consider expanding t
 ### The api provide two route :
 
 
-<details><summary><b> **/Amazon** </b></summary>
+<details><summary><b> /Amazon </b></summary>
 
 1. Post Method:
           - **Query Params** :
