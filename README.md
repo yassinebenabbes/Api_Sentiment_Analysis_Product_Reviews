@@ -1,7 +1,7 @@
 # Product Review Sentiment Analysis using Bert
 
 <img src="https://github.com/yassinebenabbes/Api_Sentiment_Analysis_Product_Reviews/blob/master/img/55259main.png" align="right"
-     alt="Sentiment Analysis logo" width="320" height="250">
+     alt="Sentiment Analysis logo" width="320" height="200">
 
 One of the key areas where NLP is mainly used is sentiment analysis. Understanding customer behavior and demand for the company's products and services is critical to the organization. Generally speaking, customer feedback on the product can be divided into positive, negative and neutral. Explaining customer feedback through product reviews helps companies assess customer satisfaction with their products/services.
 
