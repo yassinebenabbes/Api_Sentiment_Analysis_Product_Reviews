@@ -33,7 +33,7 @@ If polarity accuracy is important to your business, you can consider expanding t
 </p>
 2. Instantiate Model
 <p align="center">
-<img src="https://github.com/yassinebenabbes/Api_Sentiment_Analysis_Product_Reviews/blob/master/img/carbon(1).png"
+<img src="https://github.com/yassinebenabbes/Api_Sentiment_Analysis_Product_Reviews/blob/master/img/carbon%20(1).png"
   alt="bERT"
   width="650" height="250">
 </p>
