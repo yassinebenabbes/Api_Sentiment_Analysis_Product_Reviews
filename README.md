@@ -141,7 +141,7 @@ If polarity accuracy is important to your business, you can consider expanding t
 
 1. Post Method:
           - **Query Params** :
-                    **analytics** = ""
+                    **analytics** = file.csv
 
     ``` sh 
      http://127.0.0.1:5000/analytics
