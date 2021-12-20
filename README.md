@@ -67,458 +67,146 @@ If polarity accuracy is important to your business, you can consider expanding t
      http://127.0.0.1:5000/amazon?url= "url"
     ```
 
-2. Post :
-
-    ```diff
-    + "size-limit": [
-    +   {
-    +     "path": "dist/app-*.js"
-    +   }
-    + ],
-      "scripts": {
-        "build": "webpack ./webpack.config.js",
-    +   "size": "npm run build && size-limit",
-        "test": "jest && eslint ."
-      }
+2. Example And Result :
+     
+     2.1 - Example
+     ``` sh 
+     http://127.0.0.1:5000/amazon?url= "https://www.amazon.com/Amazfit-Android-Fitness-Display-Tracking/dp/B09H5TWZQT/ref=sr_1_1_sspa?keywords=fitness+GPS&pf_rd_i=21439846011&pf_rd_m=ATVPDKIKX0DER&pf_rd_p=67c6cf47-c067-447f-a799-b2cb009a7a6e&pf_rd_r=9QQMNCA3BQF4XZCH232H&pf_rd_s=merchandised-search-8&pf_rd_t=101&qid=1640000071&sr=8-1-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUExQVNEUzY5TEZUT0ROJmVuY3J5cHRlZElkPUEwOTExMTAzM0ZIMVY4QzZDSTNNTCZlbmNyeXB0ZWRBZElkPUEwMTE2NzE5Mk81TFdEVUJDOVhITiZ3aWRnZXROYW1lPXNwX2F0ZiZhY3Rpb249Y2xpY2tSZWRpcmVjdCZkb05vdExvZ0NsaWNrPXRydWU="
     ```
-
-3. Here’s how you can get the size for your current project:
-
-    ```sh
-    $ npm run size
-
-      Package size: 30.08 kB with all dependencies, minified and gzipped
-    ```
-
-4. Now, let’s set the limit. Add 25% to the current total size and use that as
-   the limit in your `package.json`:
-
-    ```diff
-      "size-limit": [
-        {
-    +     "limit": "35 kB",
-          "path": "dist/app-*.js"
-        }
-      ],
-    ```
-
-5. Add the `size` script to your test suite:
-
-    ```diff
-      "scripts": {
-        "build": "webpack ./webpack.config.js",
-        "size": "npm run build && size-limit",
-    -   "test": "jest && eslint ."
-    +   "test": "jest && eslint . && npm run size"
-      }
-    ```
-
-6. If you don’t have a continuous integration service running, don’t forget
-   to add one — start with [Travis CI].
-
-</details>
-
-
-### JS Application and Time-based Limit
-
-File size limit (in kB) is not the best way to describe your JS application
-cost for developers. Developers will compare the size of the JS bundle
-with the size of images. But browsers need much more time to parse 100 kB
-of JS than 100 kB of an image since JS compilers are very complex.
-
-This is why Size Limit support time-based limit. It runs headless Chrome
-to track the time a browser takes to compile and execute your JS.
-
-<details><summary><b>Show instructions</b></summary>
-
-1. Install the preset:
-
-    ```sh
-    $ npm install --save-dev size-limit @size-limit/preset-app
-    ```
-
-2. Add the `size-limit` section and the `size` script to your `package.json`:
-
-    ```diff
-    + "size-limit": [
-    +   {
-    +     "path": "dist/app-*.js"
-    +   }
-    + ],
-      "scripts": {
-        "build": "webpack ./webpack.config.js",
-    +   "size": "npm run build && size-limit",
-        "test": "jest && eslint ."
-      }
-    ```
-
-3. Here’s how you can get the size for your current project:
-
-    ```sh
-    $ npm run size
-
-      Package size: 30.08 kB with all dependencies, minified and gzipped
-      Loading time: 602 ms   on slow 3G
-      Running time: 214 ms   on Snapdragon 410
-      Total time:   815 ms
-    ```
-
-4. Now, let’s set the limit. Add 25% to the current total time and use that as
-   the limit in your `package.json`:
-
-    ```diff
-      "size-limit": [
-        {
-    +     "limit": "1 s",
-          "path": "dist/app-*.js"
-        }
-      ],
-    ```
-
-5. Add the `size` script to your test suite:
-
-    ```diff
-      "scripts": {
-        "build": "webpack ./webpack.config.js",
-        "size": "npm run build && size-limit",
-    -   "test": "jest && eslint ."
-    +   "test": "jest && eslint . && npm run size"
-      }
-    ```
-
-6. If you don’t have a continuous integration service running, don’t forget
-   to add one — start with [Travis CI].
-
-</details>
-
-
-### Big Libraries
-
-JS libraries > 10 kB in size.
-
-This preset includes headless Chrome, and will measure your lib’s execution
-time. You likely don’t need this overhead for a small 2 kB lib, but for larger
-ones the execution time is a more accurate and understandable metric that
-the size in bytes. Library like [React] is a good example for this preset.
-
-<details><summary><b>Show instructions</b></summary>
-
-1. Install preset:
-
-    ```sh
-    $ npm install --save-dev size-limit @size-limit/preset-big-lib
-    ```
-
-2. Add the `size-limit` section and the `size` script to your `package.json`:
-
-    ```diff
-    + "size-limit": [
-    +   {
-    +     "path": "dist/react.production-*.js"
-    +   }
-    + ],
-      "scripts": {
-        "build": "webpack ./scripts/rollup/build.js",
-    +   "size": "npm run build && size-limit",
-        "test": "jest && eslint ."
-      }
-    ```
-
-3. If you use ES modules you can test the size after tree-shaking with `import`
-   option:
-
-    ```diff
-      "size-limit": [
-        {
-          "path": "dist/react.production-*.js",
-    +     "import": "{ createComponent }"
-        }
-      ],
-    ```
-
-4. Here’s how you can get the size for your current project:
-
-    ```sh
-    $ npm run size
-
-      Package size: 30.08 kB with all dependencies, minified and gzipped
-      Loading time: 602 ms   on slow 3G
-      Running time: 214 ms   on Snapdragon 410
-      Total time:   815 ms
-    ```
-
-5. Now, let’s set the limit. Add 25% to the current total time and use that
-   as the limit in your `package.json`:
-
-    ```diff
-      "size-limit": [
-        {
-    +     "limit": "1 s",
-          "path": "dist/react.production-*.js"
-        }
-      ],
-    ```
-
-6. Add a `size` script to your test suite:
-
-    ```diff
-      "scripts": {
-        "build": "rollup ./scripts/rollup/build.js",
-        "size": "npm run build && size-limit",
-    -   "test": "jest && eslint ."
-    +   "test": "jest && eslint . && npm run size"
-      }
-    ```
-
-7. If you don’t have a continuous integration service running, don’t forget
-   to add one — start with [Travis CI].
-8. Add the library size to docs, it will help users to choose your project:
-
-    ```diff
-      # Project Name
-
-      Short project description
-
-      * **Fast.** 10% faster than competitor.
-    + * **Small.** 15 kB (minified and gzipped).
-    +   [Size Limit](https://github.com/ai/size-limit) controls the size.
-    ```
-
-</details>
-
-
-### Small Libraries
-
-JS libraries < 10 kB in size.
-
-This preset will only measure the size, without the execution time, so it’s
-suitable for small libraries. If your library is larger, you likely want
-the Big Libraries preset above. [Nano ID] or [Storeon] are good examples
-for this preset.
-
-<details><summary><b>Show instructions</b></summary>
-
-1. First, install `size-limit`:
-
-    ```sh
-    $ npm install --save-dev size-limit @size-limit/preset-small-lib
-    ```
-
-2. Add the `size-limit` section and the `size` script to your `package.json`:
-
-    ```diff
-    + "size-limit": [
-    +   {
-    +     "path": "index.js"
-    +   }
-    + ],
-      "scripts": {
-    +   "size": "size-limit",
-        "test": "jest && eslint ."
-      }
-    ```
-
-3. Here’s how you can get the size for your current project:
-
-    ```sh
-    $ npm run size
-
-      Package size: 177 B with all dependencies, minified and gzipped
-    ```
-
-4. If your project size starts to look bloated, run `--why` for analysis:
-
-    ```sh
-    $ npm run size -- --why
-    ```
-
-    > We use [Statoscope](https://github.com/statoscope/statoscope) as bundle analyzer.
-
-6. Now, let’s set the limit. Determine the current size of your library,
-   add just a little bit (a kilobyte, maybe) and use that as the limit
-   in your `package.json`:
-
-    ```diff
-     "size-limit": [
-        {
-    +     "limit": "9 kB",
-          "path": "index.js"
-        }
-     ],
-    ```
-
-7. Add the `size` script to your test suite:
-
-    ```diff
-      "scripts": {
-        "size": "size-limit",
-    -   "test": "jest && eslint ."
-    +   "test": "jest && eslint . && npm run size"
-      }
-    ```
-
-8. If you don’t have a continuous integration service running, don’t forget
-   to add one — start with [Travis CI].
-9. Add the library size to docs, it will help users to choose your project:
-
-    ```diff
-      # Project Name
-
-      Short project description
-
-      * **Fast.** 10% faster than competitor.
-    + * **Small.** 500 bytes (minified and gzipped). No dependencies.
-    +   [Size Limit](https://github.com/ai/size-limit) controls the size.
-    ```
-
-</details>
-
-[Travis CI]: https://github.com/dwyl/learn-travis
-[Storeon]: https://github.com/ai/storeon/
-[Nano ID]: https://github.com/ai/nanoid/
-[React]: https://github.com/facebook/react/
-
-
-## Reports
-
-Size Limit has a [GitHub action] that comments and rejects pull requests based
-on Size Limit output.
-
-1. Install and configure Size Limit as shown above.
-2. Add the following action inside `.github/workflows/size-limit.yml`
-
-```yaml
-name: "size"
-on:
-  pull_request:
-    branches:
-      - master
-jobs:
-  size:
-    runs-on: ubuntu-latest
-    env:
-      CI_JOB_NUMBER: 1
-    steps:
-      - uses: actions/checkout@v1
-      - uses: andresz1/size-limit-action@v1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-```
-
-
-## Config
-
-Size Limits supports three ways to define config.
-
-1. `size-limit` section in `package.json`:
-
-   ```json
-     "size-limit": [
-       {
-         "path": "index.js",
-         "import": "{ createStore }",
-         "limit": "500 ms"
-       }
-     ]
-   ```
-
-2. or a separate `.size-limit.json` config file:
-
-   ```js
-   [
+     2.2 - Result
+     
+    ``` sh
      {
-       "path": "index.js",
-       "import": "{ createStore }",
-       "limit": "500 ms"
-     }
-   ]
-   ```
+    "Negative_Review": [
+        {
+            "rating": 1,
+            "review": "\n\n  If you're into fitness please don't get this. I tested it vs known good polar chest strap and Garmin venu and those worked well where the Amafit heartrate couldn't keep up it would make my heartrate randomly dip to 50bpm while my other bands said 140. I got 10 hours of sleep one night and it gave me 6 hours. This is off 3 days of testing and heartrate and sleep tracking were way off.\n\n",
+            "type": "negative"
+        }
+    ],
+    "Neutral_Review": [
+        {
+            "rating": 3,
+            "review": "\n\n  Me gusto la forma del producto y las imágenes. También las opciones de medir el stress y el oxigeno. Me ha sido bastante preciso en cuanto al sueño . Me gusta mucho la rotación que tiene el marcador horario, permite ver rápidamente las opciones. Creo que sobrevenden la automatización de los ejercicios. No es automático de pasar de un ejercicio a otro. Tienes que hacer al cambio manual. Recoge bien las caminatas pero si pasas a otro ejercicio por algunos minutos (por ejemplo elíptica) tienes que detenerte y cambiar a elíptica y luego si continuas en caminata tienes que detener elíptica y anotar caminata.  De alguna forma pierdes algo del impulso que llevas. Me preocupa si viajo a Europa con el voltaje 220 porque no podré cambiar de los 110 V de los EUA y en este sentido el reloj es inútil. En ninguna parte menciona como se puede lograr la convertibilidad de 110 V a 220 V.  Para poder emparejar con la app Zepp el proceso fue largo y complicado.  Es muy difícil comunicarse con la casa Amazfit para preguntas y si lo logras no responden.\n\n",
+            "type": "neutral"
+        }
+    ],
+    "Positive_Review": [
+        {
+            "rating": 5,
+            "review": "\n\n  My daughter showed me an Amazfit GTR 3 Pro she recently purchased and how easy it was to use, and it looked gorgeous on her.  I needed something that looked stylish while monitoring my heart rate, oxygen level, breathing rate, etc. So we searched upon this brand to see what other watches it has to offer.  And I laid my eyes on this rosa color watch, the screen size is just right, not too big for the wrist, yet I was able to see all the text on the big display.  My daughter helped me set this up in just a few minutes.  And I’ve been wearing it since, received so many compliments from others.  Now I have a piece of mind to track how active I am, and if I were sitting too long, it’d remind me to get up and walk a little.  I also love how it monitors sleep patterns; and suggests ways to reduce stress, such as breathing exercises, to help you improve sleep quality.  The biggest plus is, I had not needed to recharge it since I got the watch (it was at 89% battery when I got it last week); now, almost a week has gone by, it is still running smoothly (you don’t have to charge it daily like the other smartwatches).\n\n",
+            "type": "positive"
+        },
+        {
+            "rating": 5,
+            "review": "\n\n  I purchased the Amazfit GTS 3 to replace my ZTE quartz that died about a year ago. I noticed the GTS 3 is a new model so I decided to try it out.  It's been about a week since I received it and the battery is still going strong.  I've been waiting for a smart watch that does not require charging every day and this one meets that requirement.  The GTS 3 is very light weight so it feels as if you are not even wearing a watch- This is a plus when you're working out.  The strap feels durable and is not thick and bulky-  Again, a good thing when working out and sweating.  The first thing I noticed when it powered on was the bright and colorful screen.  The colorful display really grabs your attention.  This thing has so many features - It'll take me some time to try everything.  The features that I have looked at and really like are : Altimeter, GPS tracking, blood oxygen, receiving notifications, and the long battery life.  Oh, and you can replace the strap also!  I love it so far!\n\n",
+            "type": "positive"
+        },
+        {
+            "rating": 5,
+            "review": "\n\n  Surprisingly all functions can be on without any premium subscription needed so recommend for those not addicted to certain brands.\n\n",
+            "type": "positive"
+        },
+        {
+            "rating": 4,
+            "review": "\n\n  Got the gts 3 today. The instruction essentially state pair to your phone, download an app and then proceed. It was not that easy. I had to do many google searches to get enough instructions to change the language from Japanese to English. I would say it took me about 2 hours to complete the setup. Once you are past the initial setup, the watch performs as advertised. Time will tell if it was a good buy.\n\n",
+            "type": "positive"
+        },
+        {
+            "rating": 5,
+            "review": "\n\n  I am very happy with my purchase of the Amazfit as is the ideal smartwatch for fitness.  Besides looking great, the GTS 3 version has all the apps to keep you fit and healthy.  You can measure your heart rate, blood oxygen level even yout stress level. Moreover, it has an app that measures your water intake and another that makes sure you stand up throughout the day. Lasyly its battery life is awesome, since I charged last I am on my 3rd day with 80% battery life.\n\n",
+            "type": "positive"
+        },
+        {
+            "rating": 5,
+            "review": "\n\n  Amazing smartwatch at a great price!!The GTS 3 is stylish, I’ve received so many compliments on it and my friends and family couldn’t believe the price tag. The one tap measuring tracks 4 health metrics in one tap, a great quick overview of my health stats without going through each metric by itself. And the battery life is the best I’ve seen. I can wear my watch to bed and not worry about charging it everyday. I’ve learned so much about my sleeping patterns and have utilized the data from my watch to get better sleep.\n\n",
+            "type": "positive"
+        }
+    ],
+    "response": "200"}
+     
+    ```
 
-3. or a more flexible `.size-limit.js` or `.size-limit.cjs` config file:
+3. The result is partionned as follows :
+     - Negative_Review [] : Contains all negative reviews with rating < 3
+     - Neutral_Review [] : Contains all neutral reviews with rating = 3 
+     - Positive_Review [] : Contains all neutral reviews with rating > 3 
+                                                                         
 
-   ```js
-   module.exports = [
+
+<details><summary><b> /Amazon </b></summary>
+
+1. Post Method:
+          - **Query Params** :
+                    **Url** = "Amazon Product url "
+
+    ``` sh 
+     http://127.0.0.1:5000/amazon?url= "url"
+    ```
+
+2. Example And Result :
+     
+     2.1 - Example
+     ``` sh 
+     http://127.0.0.1:5000/amazon?url= "https://www.amazon.com/Amazfit-Android-Fitness-Display-Tracking/dp/B09H5TWZQT/ref=sr_1_1_sspa?keywords=fitness+GPS&pf_rd_i=21439846011&pf_rd_m=ATVPDKIKX0DER&pf_rd_p=67c6cf47-c067-447f-a799-b2cb009a7a6e&pf_rd_r=9QQMNCA3BQF4XZCH232H&pf_rd_s=merchandised-search-8&pf_rd_t=101&qid=1640000071&sr=8-1-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUExQVNEUzY5TEZUT0ROJmVuY3J5cHRlZElkPUEwOTExMTAzM0ZIMVY4QzZDSTNNTCZlbmNyeXB0ZWRBZElkPUEwMTE2NzE5Mk81TFdEVUJDOVhITiZ3aWRnZXROYW1lPXNwX2F0ZiZhY3Rpb249Y2xpY2tSZWRpcmVjdCZkb05vdExvZ0NsaWNrPXRydWU="
+    ```
+     2.2 - Result
+     
+    ``` sh
      {
-       path: "index.js",
-       import: "{ createStore }",
-       limit: "500 ms"
-     }
-   ]
-   ```
+    "Negative_Review": [
+        {
+            "rating": 1,
+            "review": "\n\n  If you're into fitness please don't get this. I tested it vs known good polar chest strap and Garmin venu and those worked well where the Amafit heartrate couldn't keep up it would make my heartrate randomly dip to 50bpm while my other bands said 140. I got 10 hours of sleep one night and it gave me 6 hours. This is off 3 days of testing and heartrate and sleep tracking were way off.\n\n",
+            "type": "negative"
+        }
+    ],
+    "Neutral_Review": [
+        {
+            "rating": 3,
+            "review": "\n\n  Me gusto la forma del producto y las imágenes. También las opciones de medir el stress y el oxigeno. Me ha sido bastante preciso en cuanto al sueño . Me gusta mucho la rotación que tiene el marcador horario, permite ver rápidamente las opciones. Creo que sobrevenden la automatización de los ejercicios. No es automático de pasar de un ejercicio a otro. Tienes que hacer al cambio manual. Recoge bien las caminatas pero si pasas a otro ejercicio por algunos minutos (por ejemplo elíptica) tienes que detenerte y cambiar a elíptica y luego si continuas en caminata tienes que detener elíptica y anotar caminata.  De alguna forma pierdes algo del impulso que llevas. Me preocupa si viajo a Europa con el voltaje 220 porque no podré cambiar de los 110 V de los EUA y en este sentido el reloj es inútil. En ninguna parte menciona como se puede lograr la convertibilidad de 110 V a 220 V.  Para poder emparejar con la app Zepp el proceso fue largo y complicado.  Es muy difícil comunicarse con la casa Amazfit para preguntas y si lo logras no responden.\n\n",
+            "type": "neutral"
+        }
+    ],
+    "Positive_Review": [
+        {
+            "rating": 5,
+            "review": "\n\n  My daughter showed me an Amazfit GTR 3 Pro she recently purchased and how easy it was to use, and it looked gorgeous on her.  I needed something that looked stylish while monitoring my heart rate, oxygen level, breathing rate, etc. So we searched upon this brand to see what other watches it has to offer.  And I laid my eyes on this rosa color watch, the screen size is just right, not too big for the wrist, yet I was able to see all the text on the big display.  My daughter helped me set this up in just a few minutes.  And I’ve been wearing it since, received so many compliments from others.  Now I have a piece of mind to track how active I am, and if I were sitting too long, it’d remind me to get up and walk a little.  I also love how it monitors sleep patterns; and suggests ways to reduce stress, such as breathing exercises, to help you improve sleep quality.  The biggest plus is, I had not needed to recharge it since I got the watch (it was at 89% battery when I got it last week); now, almost a week has gone by, it is still running smoothly (you don’t have to charge it daily like the other smartwatches).\n\n",
+            "type": "positive"
+        },
+        {
+            "rating": 5,
+            "review": "\n\n  I purchased the Amazfit GTS 3 to replace my ZTE quartz that died about a year ago. I noticed the GTS 3 is a new model so I decided to try it out.  It's been about a week since I received it and the battery is still going strong.  I've been waiting for a smart watch that does not require charging every day and this one meets that requirement.  The GTS 3 is very light weight so it feels as if you are not even wearing a watch- This is a plus when you're working out.  The strap feels durable and is not thick and bulky-  Again, a good thing when working out and sweating.  The first thing I noticed when it powered on was the bright and colorful screen.  The colorful display really grabs your attention.  This thing has so many features - It'll take me some time to try everything.  The features that I have looked at and really like are : Altimeter, GPS tracking, blood oxygen, receiving notifications, and the long battery life.  Oh, and you can replace the strap also!  I love it so far!\n\n",
+            "type": "positive"
+        },
+        {
+            "rating": 5,
+            "review": "\n\n  Surprisingly all functions can be on without any premium subscription needed so recommend for those not addicted to certain brands.\n\n",
+            "type": "positive"
+        },
+        {
+            "rating": 4,
+            "review": "\n\n  Got the gts 3 today. The instruction essentially state pair to your phone, download an app and then proceed. It was not that easy. I had to do many google searches to get enough instructions to change the language from Japanese to English. I would say it took me about 2 hours to complete the setup. Once you are past the initial setup, the watch performs as advertised. Time will tell if it was a good buy.\n\n",
+            "type": "positive"
+        },
+        {
+            "rating": 5,
+            "review": "\n\n  I am very happy with my purchase of the Amazfit as is the ideal smartwatch for fitness.  Besides looking great, the GTS 3 version has all the apps to keep you fit and healthy.  You can measure your heart rate, blood oxygen level even yout stress level. Moreover, it has an app that measures your water intake and another that makes sure you stand up throughout the day. Lasyly its battery life is awesome, since I charged last I am on my 3rd day with 80% battery life.\n\n",
+            "type": "positive"
+        },
+        {
+            "rating": 5,
+            "review": "\n\n  Amazing smartwatch at a great price!!The GTS 3 is stylish, I’ve received so many compliments on it and my friends and family couldn’t believe the price tag. The one tap measuring tracks 4 health metrics in one tap, a great quick overview of my health stats without going through each metric by itself. And the battery life is the best I’ve seen. I can wear my watch to bed and not worry about charging it everyday. I’ve learned so much about my sleeping patterns and have utilized the data from my watch to get better sleep.\n\n",
+            "type": "positive"
+        }
+    ],
+    "response": "200"}
+     
+    ```
 
-Each section in the config can have these options:
+3. The result is partionned as follows :
+     - Negative_Review [] : Contains all negative reviews with rating < 3
+     - Neutral_Review [] : Contains all neutral reviews with rating = 3 
+     - Positive_Review [] : Contains all neutral reviews with rating > 3 
+                                                                         
 
-* **path**: relative paths to files. The only mandatory option.
-  It could be a path `"index.js"`, a [pattern] `"dist/app-*.js"`
-  or an array `["index.js", "dist/app-*.js", "!dist/app-exclude.js"]`.
-* **import**: partial import to test tree-shaking. It could be `"{ lib }"`
-  to test `import { lib } from 'lib'` or `{ "a.js": "{ a }", "b.js": "{ b }" }`
-  to test multiple files.
-* **limit**: size or time limit for files from the `path` option. It should be
-  a string with a number and unit, separated by a space.
-  Format: `100 B`, `10 kB`, `500 ms`, `1 s`.
-* **name**: the name of the current section. It will only be useful
-  if you have multiple sections.
-* **entry**: when using a custom webpack config, a webpack entry could be given.
-  It could be a string or an array of strings.
-  By default, the total size of all entry points will be checked.
-* **webpack**: with `false` it will disable webpack.
-* **running**: with `false` it will disable calculating running time.
-* **gzip**: with `false` it will disable gzip compression.
-* **brotli**: with `true` it will use brotli compression and disable
-  gzip compression.
-* **config**: a path to a custom webpack config.
-* **ignore**: an array of files and dependencies to exclude from
-  the project size calculation.
-* **modifyWebpackConfig**: (.size-limit.js only) function that can be used
-  to do last-minute changes to the webpack config, like adding a plugin.
-* **compareWith**: path to `stats.json` from another build to compare
-  (when `--why` is using).
-* **uiReports**: custom UI reports list (see [Statoscope docs]).
-
-If you use Size Limit to track the size of CSS files, make sure to set
-`webpack: false`. Otherwise, you will get wrong numbers, because webpack
-inserts `style-loader` runtime (≈2 kB) into the bundle.
-
-[Statoscope docs]: https://github.com/statoscope/statoscope/tree/master/packages/webpack-plugin#optionsreports-report
-[pattern]: https://github.com/sindresorhus/globby#globbing-patterns
-
-
-## Plugins and Presets
-
-Plugins:
-
-* `@size-limit/file` checks the size of files with Gzip, Brotli
-  or without compression.
-* `@size-limit/webpack` adds your library to empty webpack project
-  and prepares bundle file for `file` plugin.
-* `@size-limit/webpack-why` adds reports for `webpack` plugin
-  about your library is of this size to show the cost of all your
-  dependencies.
-* `@size-limit/webpack-css` adds css support for `webpack` plugin.
-* `@size-limit/esbuild` is like `webpack` plugin, but uses `esbuild`
-  to be faster and use less space in `node_modules`.
-* `@size-limit/time` uses headless Chrome to track time to execute JS.
-* `@size-limit/dual-publish` compiles files to ES modules with [`dual-publish`]
-  to check size after tree-shaking.
-
-Plugin presets:
-
-* `@size-limit/preset-app` contains `file` and `time` plugins.
-* `@size-limit/preset-big-lib` contains `webpack`, `file`, and `time` plugins.
-* `@size-limit/preset-small-lib` contains `esbuild` and `file` plugins.
-
-[`dual-publish`]: https://github.com/ai/dual-publish
-
-
-## JS API
-
-```js
-const sizeLimit = require('size-limit')
-const filePlugin = require('@size-limit/file')
-const webpackPlugin = require('@size-limit/webpack')
-
-sizeLimit([filePlugin, webpackPlugin], [filePath]).then(result => {
-  result //=> { size: 12480 }
-})
-```
