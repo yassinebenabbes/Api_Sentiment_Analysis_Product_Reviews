@@ -15,12 +15,12 @@ If polarity accuracy is important to your business, you can consider expanding t
 * **Very Positive**
 
 
-BERT(bi-directional Encoder Representation of Transformers) is a machine learning technique developed by Google based on the Transformers mechanism. In our sentiment analysis application, our model is trained on a pre-trained BERT model. BERT models have replaced the conventional RNN based LSTM networks. They can easily understand the context of a word in a sentence based on previous words in the sentences due to its bi-directional approach.
+**BERT(bi-directional Encoder Representation of Transformers)** is a machine learning technique developed by Google based on the Transformers mechanism. In our sentiment analysis application, our model is trained on a pre-trained BERT model. BERT models have replaced the conventional RNN based LSTM networks. They can easily understand the context of a word in a sentence based on previous words in the sentences due to its bi-directional approach.
 
 <p align="center">
 <img src="https://www.codemotion.com/magazine/wp-content/uploads/2020/05/bert-google-1200x675.png"
   alt="bERT"
-  width="686" height="289">
+  width="320" height="250">
 </p>
 
 With `--why`, Size Limit can tell you *why* your library is of this size
