@@ -137,7 +137,7 @@ If polarity accuracy is important to your business, you can consider expanding t
      
 ### Second Route : 
      
-<details><summary><b> /analytics </b></summary>
+<details><summary><b> /Analytics </b></summary>
 
 1. Post Method:
           - **Query Params** :
