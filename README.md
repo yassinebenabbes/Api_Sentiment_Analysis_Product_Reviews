@@ -57,20 +57,16 @@ If polarity accuracy is important to your business, you can consider expanding t
 ### The api provide two route :
 
 
-Suitable for applications that have their own bundler and send the JS bundle
-directly to a client (without publishing it to npm). Think of a user-facing app
-or website, like an email client, a CRM, a landing page or a blog with
-interactive elements, using React/Vue/Svelte lib or vanilla JS.
+<details><summary><b> **/Amazon** </b></summary>
 
-<details><summary><b>Show instructions</b></summary>
+1. Post Method:
+          - **Query Params** :
+                    **Url** = "Amazon Product url "
 
-1. Install the preset:
-
-    ```sh
-    $ npm install --save-dev size-limit @size-limit/file
+    ```sh http://127.0.0.1:5000/amazon?url= "url"
     ```
 
-2. Add the `size-limit` section and the `size` script to your `package.json`:
+2. Post :
 
     ```diff
     + "size-limit": [
