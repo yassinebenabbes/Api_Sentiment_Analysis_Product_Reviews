@@ -54,7 +54,8 @@ If polarity accuracy is important to your business, you can consider expanding t
 
 ## Usage
 
-### JS Applications
+### The api provide two route :
+
 
 Suitable for applications that have their own bundler and send the JS bundle
 directly to a client (without publishing it to npm). Think of a user-facing app
