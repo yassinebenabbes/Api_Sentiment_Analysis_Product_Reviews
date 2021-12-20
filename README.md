@@ -20,7 +20,7 @@ If polarity accuracy is important to your business, you can consider expanding t
 <p align="center">
 <img src="https://www.codemotion.com/magazine/wp-content/uploads/2020/05/bert-google-1200x675.png"
   alt="bERT"
-  width="320" height="320">
+  width="450" height="250">
 </p>
 
 With `--why`, Size Limit can tell you *why* your library is of this size
