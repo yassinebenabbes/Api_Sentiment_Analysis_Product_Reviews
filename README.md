@@ -15,12 +15,11 @@ If polarity accuracy is important to your business, you can consider expanding t
 * **Very Positive**
 
 
-With **[GitHub action]** Size Limit will post bundle size changes as a comment
-in pull request discussion.
+BERT(bi-directional Encoder Representation of Transformers) is a machine learning technique developed by Google based on the Transformers mechanism. In our sentiment analysis application, our model is trained on a pre-trained BERT model. BERT models have replaced the conventional RNN based LSTM networks. They can easily understand the context of a word in a sentence based on previous words in the sentences due to its bi-directional approach.
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/andresz1/size-limit-action/master/assets/pr.png"
-  alt="Size Limit comment in pull request about bundle size changes"
+<img src="https://www.codemotion.com/magazine/wp-content/uploads/2020/05/bert-google-1200x675.png"
+  alt="bERT"
   width="686" height="289">
 </p>
 
