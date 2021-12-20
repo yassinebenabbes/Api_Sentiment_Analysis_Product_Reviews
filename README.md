@@ -44,14 +44,13 @@ If polarity accuracy is important to your business, you can consider expanding t
   alt="bERT"
   width="650" height="250">
 </p>
-5. The `time` plugin compares the current machine performance with that of
-   a low-priced Android devices to calculate the CPU throttling rate.
-5. Then the `time` plugin runs headless Chrome (or desktop Chrome if it’s
-   available) to track the time a browser takes to compile and execute your JS.
-   Note that these measurements depend on available resources and might
-   be unstable. [See here](https://github.com/mbalabash/estimo/issues/5)
-   for more details.
 
+4. Run flask application using flask run command
+<p align="center">
+<img src="https://github.com/yassinebenabbes/Api_Sentiment_Analysis_Product_Reviews/blob/master/img/carbon%20(3).png"
+  alt="bERT"
+  width="650" height="250">
+</p>
 
 ## Usage
 
