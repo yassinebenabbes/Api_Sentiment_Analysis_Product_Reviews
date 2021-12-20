@@ -38,9 +38,13 @@ If polarity accuracy is important to your business, you can consider expanding t
   width="650" height="250">
 </p>
 
-4. The `webpack` plugin creates an empty webpack project, adds your library
-   and looks for the bundle size difference.
-4. The `time` plugin compares the current machine performance with that of
+3. Encode and Calculate Sentiment
+<p align="center">
+<img src="https://github.com/yassinebenabbes/Api_Sentiment_Analysis_Product_Reviews/blob/master/img/carbon%20(2).png"
+  alt="bERT"
+  width="650" height="250">
+</p>
+5. The `time` plugin compares the current machine performance with that of
    a low-priced Android devices to calculate the CPU throttling rate.
 5. Then the `time` plugin runs headless Chrome (or desktop Chrome if it’s
    available) to track the time a browser takes to compile and execute your JS.
