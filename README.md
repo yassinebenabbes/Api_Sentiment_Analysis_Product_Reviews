@@ -31,11 +31,14 @@ If polarity accuracy is important to your business, you can consider expanding t
   alt="bERT"
   width="650" height="250">
 </p>
-3. If you use the `webpack` plugin, Size Limit will bundle your JS files into
-   a single file. It is important to track dependencies and webpack polyfills.
-   It is also useful for small libraries with many small files and without
-   a bundler.
-3. The `webpack` plugin creates an empty webpack project, adds your library
+2. Instantiate Model
+<p align="center">
+<img src="https://github.com/yassinebenabbes/Api_Sentiment_Analysis_Product_Reviews/blob/master/img/carbon(1).png"
+  alt="bERT"
+  width="650" height="250">
+</p>
+
+4. The `webpack` plugin creates an empty webpack project, adds your library
    and looks for the bundle size difference.
 4. The `time` plugin compares the current machine performance with that of
    a low-priced Android devices to calculate the CPU throttling rate.
