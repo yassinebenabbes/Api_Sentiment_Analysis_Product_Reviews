@@ -132,7 +132,8 @@ If polarity accuracy is important to your business, you can consider expanding t
      - Neutral_Review [] : Contains all neutral reviews with rating = 3 
      - Positive_Review [] : Contains all neutral reviews with rating > 3 
                                                                          
-
+</details>
+     
 ### Second Route : 
      
 <details><summary><b> /Amazon </b></summary>
@@ -210,4 +211,4 @@ If polarity accuracy is important to your business, you can consider expanding t
      - Neutral_Review [] : Contains all neutral reviews with rating = 3 
      - Positive_Review [] : Contains all neutral reviews with rating > 3 
                                                                          
-
+</details>
