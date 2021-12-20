@@ -63,7 +63,8 @@ If polarity accuracy is important to your business, you can consider expanding t
           - **Query Params** :
                     **Url** = "Amazon Product url "
 
-    ```sh http://127.0.0.1:5000/amazon?url= "url"
+    ``` sh 
+     http://127.0.0.1:5000/amazon?url= "url"
     ```
 
 2. Post :
