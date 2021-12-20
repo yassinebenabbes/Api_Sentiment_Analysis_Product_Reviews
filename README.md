@@ -29,7 +29,7 @@ If polarity accuracy is important to your business, you can consider expanding t
 <p align="center">
 <img src="https://github.com/yassinebenabbes/Api_Sentiment_Analysis_Product_Reviews/blob/master/img/carbon.png"
   alt="bERT"
-  width="450" height="250">
+  width="650" height="250">
 </p>
 3. If you use the `webpack` plugin, Size Limit will bundle your JS files into
    a single file. It is important to track dependencies and webpack polyfills.
